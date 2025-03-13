@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'PressStart2P';
+  src: url('/src/assets/fonts/PressStart2P-Regular.ttf') format('truetype');
+}
+
+/*.font-custom {*/
+/*  font-family: 'PressStart2P', serif;*/
+/*}*/
+
+@font-face {
+  font-family: 'Handjet';
+  src: url('/src/assets/fonts/Handjet-Light.ttf') format('truetype');
+}
+
+/*.font-custom {*/
+/*  font-family: 'Handjet', serif;*/
+/*}*/
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/src/assets/fonts/Outfit-Medium.ttf') format('truetype');
+}
