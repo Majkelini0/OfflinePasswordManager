@@ -3,6 +3,13 @@ import './index.css'
 
 function App() {
 
+    const powerOff = (e) => {
+        // e.target.blur();
+        // window.open('', '_self', '');
+        // window.close();
+        // window.location.href = "about:blank";
+    }
+
     return (
         <>
             <div className="w-[1440px] h-[900px] relative bg-[#17153B] overflow-hidden">
@@ -46,8 +53,8 @@ function App() {
                         {/*ADD PASSWORD + POWER OFF BUTTONS GROUP*/}
                         <div className="w-10 h-28 relative">
                             {/*POWER OFF BUTTON*/}
-                            <div
-                                className="w-10 h-10 p-2 left-0 top-[70px] absolute bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] inline-flex justify-start items-center gap-2.5">
+                            <button onClick={powerOff}
+                                className="w-10 h-10 p-2 left-0 top-[70px] absolute bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] inline-flex justify-start items-center gap-2.5">
                                 <div className="w-6 h-6 relative overflow-hidden">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -67,7 +74,9 @@ function App() {
                                     </svg>
 
                                 </div>
-                            </div>
+                            </button>
+
+
                             {/*ADD PASSWORD BUTTON*/}
                             <div
                                 className="w-10 h-10 p-2 left-0 top-0 absolute bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] inline-flex justify-start items-center gap-2.5">
@@ -99,7 +108,7 @@ function App() {
 
                             {/*PASSWORD X*/}
                             <div className="self-stretch relative inline-flex justify-start items-center gap-3">
-                                <div
+                            <div
                                     className="w-[582.18px] h-14 bg-[#17153B] rounded-[10px] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.50)]"/>
                                 {/*PREVIEW + DELETE BUTTONS GROUP*/}
                                 <div className="flex justify-start items-center gap-3">
