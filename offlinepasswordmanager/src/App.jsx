@@ -3,7 +3,7 @@ import './index.css'
 
 function App() {
 
-    const powerOff = (e) => {
+    const powerOff = () => {
         // e.target.blur();
         // window.open('', '_self', '');
         // window.close();
@@ -26,8 +26,8 @@ function App() {
                         <div className="w-14 h-30 relative">
 
                             {/*SYNC BUTTON*/}
-                            <div
-                                className="w-10 h-10 p-2 left-[10px] top-[80px] absolute bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] inline-flex justify-start items-center gap-2.5">
+                            <button
+                                className="w-10 h-10 p-2 left-[10px] top-[80px] absolute bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] inline-flex justify-start items-center gap-2.5">
                                 <div className="w-6 h-6 relative overflow-hidden">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +44,7 @@ function App() {
                                     </svg>
 
                                 </div>
-                            </div>
+                            </button>
 
                             {/*PROFILE PIC*/}
                             <div className="w-14 h-14 left-0 top-0 absolute bg-zinc-300 rounded-full"/>
@@ -78,8 +78,8 @@ function App() {
 
 
                             {/*ADD PASSWORD BUTTON*/}
-                            <div
-                                className="w-10 h-10 p-2 left-0 top-0 absolute bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] inline-flex justify-start items-center gap-2.5">
+                            <button
+                                className="w-10 h-10 p-2 left-0 top-0 absolute bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] inline-flex justify-start items-center gap-2.5">
                                 <div className="w-6 h-6 relative overflow-hidden">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -96,7 +96,7 @@ function App() {
                                     </svg>
 
                                 </div>
-                            </div>
+                            </button>
                         </div>
                     </div>
 
@@ -113,8 +113,8 @@ function App() {
                                 {/*PREVIEW + DELETE BUTTONS GROUP*/}
                                 <div className="flex justify-start items-center gap-3">
                                     {/*PREVIEW BUTTON*/}
-                                    <div
-                                        className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                                    <button
+                                        className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                         <div className="w-6 h-6 relative overflow-hidden">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -130,10 +130,10 @@ function App() {
                                                 </defs>
                                             </svg>
                                         </div>
-                                    </div>
+                                    </button>
                                     {/*DELETE BUTTON*/}
-                                    <div
-                                        className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                                    <button
+                                        className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                         <div className="w-6 h-6 relative overflow-hidden">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -148,7 +148,7 @@ function App() {
                                                     fill="#820000"/>
                                             </svg>
                                         </div>
-                                    </div>
+                                    </button>
                                 </div>
                                 <div className="left-[10px] top-[4px] absolute flex justify-start items-center gap-5">
                                     {/*NAZWA + KOMENTARZ GROUP*/}
@@ -164,8 +164,8 @@ function App() {
                                     </div>
                                     {/*UP / DOWN BUTTONS GROUP*/}
                                     <div className="w-5 inline-flex flex-col justify-start items-start gap-1.5">
-                                        <div
-                                            className="self-stretch h-5 bg-violet-300 rounded-[5px] inline-flex justify-center items-center">
+                                        <button
+                                            className="self-stretch h-5 bg-violet-300 hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] inline-flex justify-center items-center">
                                             <div className="w-6 h-6 relative flex justify-center items-center">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
@@ -174,9 +174,9 @@ function App() {
                                                         fill="#17153B"/>
                                                 </svg>
                                             </div>
-                                        </div>
-                                        <div
-                                            className="self-stretch h-5 bg-violet-300 rounded-[5px] inline-flex justify-center items-center">
+                                        </button>
+                                        <button
+                                            className="self-stretch h-5 bg-violet-300 hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] inline-flex justify-center items-center">
                                             <div className="w-6 h-6 relative flex justify-center items-center">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
@@ -185,7 +185,7 @@ function App() {
                                                         fill="#17153B"/>
                                                 </svg>
                                             </div>
-                                        </div>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -197,8 +197,8 @@ function App() {
                                 {/*PREVIEW + DELETE BUTTONS GROUP*/}
                                 <div className="flex justify-start items-center gap-3">
                                     {/*PREVIEW BUTTON*/}
-                                    <div
-                                        className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                                    <button
+                                        className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                         <div className="w-6 h-6 relative overflow-hidden">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -214,10 +214,10 @@ function App() {
                                                 </defs>
                                             </svg>
                                         </div>
-                                    </div>
+                                    </button>
                                     {/*DELETE BUTTON*/}
-                                    <div
-                                        className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                                    <button
+                                        className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                         <div className="w-6 h-6 relative overflow-hidden">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -232,7 +232,7 @@ function App() {
                                                     fill="#820000"/>
                                             </svg>
                                         </div>
-                                    </div>
+                                    </button>
                                 </div>
                                 <div className="left-[10px] top-[4px] absolute flex justify-start items-center gap-5">
                                     {/*NAZWA + KOMENTARZ GROUP*/}
@@ -248,8 +248,8 @@ function App() {
                                     </div>
                                     {/*UP / DOWN BUTTONS GROUP*/}
                                     <div className="w-5 inline-flex flex-col justify-start items-start gap-1.5">
-                                        <div
-                                            className="self-stretch h-5 bg-violet-300 rounded-[5px] inline-flex justify-center items-center">
+                                        <button
+                                            className="self-stretch h-5 bg-violet-300 hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] inline-flex justify-center items-center">
                                             <div className="w-6 h-6 relative flex justify-center items-center">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
@@ -258,9 +258,9 @@ function App() {
                                                         fill="#17153B"/>
                                                 </svg>
                                             </div>
-                                        </div>
-                                        <div
-                                            className="self-stretch h-5 bg-violet-300 rounded-[5px] inline-flex justify-center items-center">
+                                        </button>
+                                        <button
+                                            className="self-stretch h-5 bg-violet-300 hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] inline-flex justify-center items-center">
                                             <div className="w-6 h-6 relative flex justify-center items-center">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
@@ -269,7 +269,7 @@ function App() {
                                                         fill="#17153B"/>
                                                 </svg>
                                             </div>
-                                        </div>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -281,8 +281,8 @@ function App() {
                                 {/*PREVIEW + DELETE BUTTONS GROUP*/}
                                 <div className="flex justify-start items-center gap-3">
                                     {/*PREVIEW BUTTON*/}
-                                    <div
-                                        className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                                    <button
+                                        className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                         <div className="w-6 h-6 relative overflow-hidden">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -298,10 +298,10 @@ function App() {
                                                 </defs>
                                             </svg>
                                         </div>
-                                    </div>
+                                    </button>
                                     {/*DELETE BUTTON*/}
-                                    <div
-                                        className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                                    <button
+                                        className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                         <div className="w-6 h-6 relative overflow-hidden">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -316,7 +316,7 @@ function App() {
                                                     fill="#820000"/>
                                             </svg>
                                         </div>
-                                    </div>
+                                    </button>
                                 </div>
                                 <div className="left-[10px] top-[4px] absolute flex justify-start items-center gap-5">
                                     {/*NAZWA + KOMENTARZ GROUP*/}
@@ -332,8 +332,8 @@ function App() {
                                     </div>
                                     {/*UP / DOWN BUTTONS GROUP*/}
                                     <div className="w-5 inline-flex flex-col justify-start items-start gap-1.5">
-                                        <div
-                                            className="self-stretch h-5 bg-violet-300 rounded-[5px] inline-flex justify-center items-center">
+                                        <button
+                                            className="self-stretch h-5 bg-violet-300 hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] inline-flex justify-center items-center">
                                             <div className="w-6 h-6 relative flex justify-center items-center">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
@@ -342,9 +342,9 @@ function App() {
                                                         fill="#17153B"/>
                                                 </svg>
                                             </div>
-                                        </div>
-                                        <div
-                                            className="self-stretch h-5 bg-violet-300 rounded-[5px] inline-flex justify-center items-center">
+                                        </button>
+                                        <button
+                                            className="self-stretch h-5 bg-violet-300 hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] inline-flex justify-center items-center">
                                             <div className="w-6 h-6 relative flex justify-center items-center">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
@@ -353,7 +353,7 @@ function App() {
                                                         fill="#17153B"/>
                                                 </svg>
                                             </div>
-                                        </div>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -379,11 +379,11 @@ function App() {
                                 </div>
                                 <div className="self-stretch inline-flex justify-between items-center">
                                     {/*NAZWA INPUT*/}
-                                    <div
-                                        className="w-96 h-11 bg-[#17153B] rounded-[10px] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.50)]"/>
+                                    <input
+                                        className="pl-5 text-[#22FF00] text-xs font-['PressStart2P'] focus:outline-none bg-[#17153B] focus:bg-[#7B68A1] hover:scale-104 w-96 h-11 rounded-[10px] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.50)]"/>
                                     {/*CLEAR BUTTON*/}
-                                    <div
-                                        className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                                    <button
+                                        className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                         <div className="w-6 h-6 relative overflow-hidden">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -399,7 +399,7 @@ function App() {
                                                 </defs>
                                             </svg>
                                         </div>
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
 
@@ -410,11 +410,11 @@ function App() {
                                 </div>
                                 <div className="self-stretch inline-flex justify-between items-center">
                                     {/*URL INPUT*/}
-                                    <div
-                                        className="w-96 h-11 bg-[#17153B] rounded-[10px] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.50)]"/>
+                                    <input
+                                        className="pl-5 text-[#22FF00] text-xs font-['PressStart2P'] focus:outline-none bg-[#17153B] focus:bg-[#7B68A1] hover:scale-104 w-96 h-11 bg-[#17153B] rounded-[10px] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.50)]"/>
                                     {/*CLEAR BUTTON*/}
-                                    <div
-                                        className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                                    <button
+                                        className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                         <div className="w-6 h-6 relative overflow-hidden">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -431,7 +431,7 @@ function App() {
                                             </svg>
 
                                         </div>
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
 
@@ -446,8 +446,8 @@ function App() {
                                     <div
                                         className="w-96 h-11 bg-[#17153B] rounded-[10px] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.50)]"/>
                                     {/*CLEAR BUTTON*/}
-                                    <div
-                                        className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                                    <button
+                                        className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                         <div className="w-6 h-6 relative overflow-hidden">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -464,7 +464,7 @@ function App() {
                                             </svg>
 
                                         </div>
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
 
@@ -478,8 +478,8 @@ function App() {
                                     <div
                                         className="w-96 h-11 bg-[#17153B] rounded-[10px] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.50)]"/>
                                     {/*CLEAR BUTTON*/}
-                                    <div
-                                        className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                                    <button
+                                        className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                         <div className="w-6 h-6 relative overflow-hidden">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -495,7 +495,7 @@ function App() {
                                                 </defs>
                                             </svg>
                                         </div>
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
 
@@ -509,8 +509,8 @@ function App() {
                                     <div
                                         className="w-96 h-11 bg-[#17153B] rounded-[10px] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.50)]"/>
                                     {/*CLEAR BUTTON*/}
-                                    <div
-                                        className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                                    <button
+                                        className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                         <div className="w-6 h-6 relative overflow-hidden">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -527,7 +527,7 @@ function App() {
                                             </svg>
 
                                         </div>
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -550,8 +550,8 @@ function App() {
                         {/*BOTTOM ACTION BUTTONS*/}
                         <div className="inline-flex justify-start items-center gap-24 pt-2">
                             {/*SAVE BUTTON*/}
-                            <div
-                                className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                            <button
+                                className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                 <div className="w-6 h-6 relative overflow-hidden">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -568,10 +568,10 @@ function App() {
                                     </svg>
 
                                 </div>
-                            </div>
+                            </button>
                             {/*EDIT BUTTON*/}
-                            <div
-                                className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                            <button
+                                className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                 <div className="w-6 h-6 relative overflow-hidden">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -588,10 +588,10 @@ function App() {
                                     </svg>
 
                                 </div>
-                            </div>
+                            </button>
                             {/*CLEAR INPUTS BUTTON*/}
-                            <div
-                                className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                            <button
+                                className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                 <div className="w-6 h-6 relative overflow-hidden">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -608,10 +608,10 @@ function App() {
                                     </svg>
 
                                 </div>
-                            </div>
+                            </button>
                             {/*CANCEL BUTTON*/}
-                            <div
-                                className="w-10 h-10 p-2 bg-[#17153B] rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
+                            <button
+                                className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center gap-2.5">
                                 <div className="w-6 h-6 relative overflow-hidden">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -627,7 +627,7 @@ function App() {
                                         </defs>
                                     </svg>
                                 </div>
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
