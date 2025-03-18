@@ -26,16 +26,16 @@ function App() {
 
                     {/*LEFT PANEL*/}
                     <div
-                        className="w-24 h-[840px] p-5 bg-[#2E236C] rounded-[10px] shadow-[10px_10px_10px_0px_rgba(0,0,0,0.50)] border-l-2 border-t-2 border-[#C8ACD6] inline-flex flex-col justify-start items-center gap-[560px]">
+                        className="w-24 h-[840px] p-5 bg-[#2E236C] rounded-[10px] shadow-[10px_10px_10px_0px_rgba(0,0,0,0.50)] border-l-2 border-t-2 border-[#C8ACD6] inline-flex flex-col justify-start items-center">
                         {/*PROFILE PIC + SYNC GROUP*/}
-                        <div className="w-14 h-30 relative">
-                            <SyncButton></SyncButton>
+                        <div className="relative flex flex-col justify-start items-center gap-5">
                             {/*PROFILE PIC*/}
-                            <div className="w-14 h-14 left-0 top-0 absolute bg-zinc-300 rounded-full"/>
+                            <button className="w-14 h-14 bg-zinc-300 rounded-full"/>
+                            <SyncButton></SyncButton>
                         </div>
 
                         {/*ADD PASSWORD + POWER OFF BUTTONS GROUP*/}
-                        <div className="w-10 h-28 relative">
+                        <div className="relative flex flex-col justify-start items-center gap-5 mt-auto pb-2">
                             <PowerOffButton></PowerOffButton>
                             <AddPasswordButton></AddPasswordButton>
                         </div>
@@ -127,7 +127,7 @@ function App() {
                             {/*NAZWA GROUP*/}
                             <div className="w-[460px] flex flex-col justify-start items-start gap-2">
                                 <div
-                                    className="self-stretch justify-start text-[#22FF00] text-xs font-normal font-['PressStart2P'] tracking-[6px]">NAZWA
+                                    className="self-stretch justify-start text-[#C8ACD6] text-xs font-normal font-['PressStart2P'] tracking-[6px]">NAZWA
                                 </div>
                                 <div className="self-stretch inline-flex justify-between items-center">
                                     {/*NAZWA INPUT*/}
@@ -140,7 +140,7 @@ function App() {
                             {/*URL GROUP*/}
                             <div className="w-[460px] flex flex-col justify-start items-start gap-2">
                                 <div
-                                    className="self-stretch justify-start text-[#22FF00] text-xs font-normal font-['PressStart2P'] tracking-[6px]">URL
+                                    className="self-stretch justify-start text-[#C8ACD6] text-xs font-normal font-['PressStart2P'] tracking-[6px]">URL
                                 </div>
                                 <div className="self-stretch inline-flex justify-between items-center">
                                     {/*URL INPUT*/}
@@ -153,7 +153,7 @@ function App() {
                             {/*LOGIN GROUP*/}
                             <div className="w-[460px] flex flex-col justify-start items-start gap-2">
                                 <div
-                                    className="self-stretch justify-start text-[#22FF00] text-xs font-normal font-['PressStart2P'] tracking-[6px]">LOGIN
+                                    className="self-stretch justify-start text-[#C8ACD6] text-xs font-normal font-['PressStart2P'] tracking-[6px]">LOGIN
                                     / EMAIL
                                 </div>
                                 <div className="self-stretch inline-flex justify-between items-center">
@@ -167,7 +167,7 @@ function App() {
                             {/*HASLO GROUP*/}
                             <div className="w-[460px] flex flex-col justify-start items-start gap-2">
                                 <div
-                                    className="self-stretch justify-start text-[#22FF00] text-xs font-normal font-['PressStart2P'] tracking-[6px]">HASLO
+                                    className="self-stretch justify-start text-[#C8ACD6] text-xs font-normal font-['PressStart2P'] tracking-[6px]">HASLO
                                 </div>
                                 <div className="self-stretch inline-flex justify-between items-center">
                                     {/*HASLO INPUT*/}
@@ -180,7 +180,7 @@ function App() {
                             {/*POWTORZ HASLO GROUP*/}
                             <div className="w-[460px] flex flex-col justify-start items-start gap-2">
                                 <div
-                                    className="self-stretch justify-start text-[#22FF00] text-xs font-normal font-['PressStart2P'] tracking-[6px]">KOMENTARZ
+                                    className="self-stretch justify-start text-[#C8ACD6] text-xs font-normal font-['PressStart2P'] tracking-[6px]">KOMENTARZ
                                 </div>
                                 <div className="self-stretch inline-flex justify-between items-center">
                                     {/*KOMENTARZ INPUT*/}

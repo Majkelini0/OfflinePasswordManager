@@ -1,10 +1,24 @@
 "use client";
-import React from "react";
+import React, {useState} from "react";
 import InputField from "./InputField";
 import SaveButton from "./buttons/SaveButton.jsx";
-import ClearButton from "./buttons/ClearButton.jsx";
+import SwitchButton from "./buttons/SwitchButton.jsx";
 
-const Login = () => {
+const Login = ({onLogin, onSwitchToRegister}) => {
+
+    const [loginData, setLoginData] = useState({
+        username: "", password: ""
+    });
+
+    const handleChange = (name, value) => {
+        setLoginData({...loginData, [name]: value});
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onLogin(loginData);
+    }
+
     return (
         <>
             <link
@@ -24,14 +38,15 @@ const Login = () => {
                             LOGIN
                         </h1>
                         <form
+                            onSubmit={handleSubmit}
                             className="flex flex-col gap-5 items-start w-full"
                         >
-                            <InputField label="LOGIN"/>
-                            <InputField label="HASLO"/>
+                            <InputField label="LOGIN" name={"username"} onChange={(value) => handleChange("username", value)}/>
+                            <InputField label="HASLO" name={"password"} type={"password"} onChange={(value) => handleChange("password", value)}/>
 
                             <div className="flex justify-between items-center w-full max-sm:mt-5">
-                                <ClearButton></ClearButton>
-                                <SaveButton></SaveButton>
+                                <SwitchButton onClick={onSwitchToRegister}></SwitchButton>
+                                <SaveButton type={'submit'}></SaveButton>
                             </div>
                         </form>
                     </div>

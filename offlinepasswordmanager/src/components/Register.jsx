@@ -3,6 +3,7 @@ import React from "react";
 import InputField from "./InputField";
 import SaveButton from "./buttons/SaveButton.jsx";
 import ClearButton from "./buttons/ClearButton.jsx";
+import SwitchButton from "./buttons/SwitchButton.jsx";
 
 const Register = () => {
     return (
@@ -31,7 +32,7 @@ const Register = () => {
                             <InputField label="POWTORZ HASLO"/>
 
                             <div className="flex justify-between items-center w-full max-sm:mt-5">
-                                <ClearButton></ClearButton>
+                                <SwitchButton></SwitchButton>
                                 <SaveButton></SaveButton>
                             </div>
                         </form>

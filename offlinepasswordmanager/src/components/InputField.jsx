@@ -3,6 +3,9 @@ import React from "react";
 import ClearButton from "./buttons/ClearButton.jsx";
 
 const InputField = ({ label, className = "" }) => {
+
+
+
     return (
         <div className={`flex flex-col gap-2 items-start w-full ${className}`}>
             <label className="text-sm font-[Handjet] text-[#22FF00] tracking-[6px] max-sm:text-xs max-sm:tracking-[4px]">

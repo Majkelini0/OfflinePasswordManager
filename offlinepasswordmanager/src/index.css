@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+
+:root {
+  --dark: #17153B;
+  --medium: #2E236C;
+  --light: #433D8B;
+  --beige: #C8ACD6;
+}
+
+
 @font-face {
   font-family: 'PressStart2P';
   src: url('/src/assets/fonts/PressStart2P-Regular.ttf') format('truetype');
