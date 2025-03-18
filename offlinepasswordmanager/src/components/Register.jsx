@@ -1,11 +1,25 @@
 "use client";
-import React from "react";
+import React, {useState} from "react";
 import InputField from "./InputField";
 import SaveButton from "./buttons/SaveButton.jsx";
 import ClearButton from "./buttons/ClearButton.jsx";
 import SwitchButton from "./buttons/SwitchButton.jsx";
 
-const Register = () => {
+const Register = ({onRegister, onSwitchToLogin}) => {
+
+    const [registerData, setRegisterData] = useState({
+        username: "", password: "", passwordRepeat: ""
+    });
+
+    const handleChange = (name, value) => {
+        setRegisterData({...registerData, [name]: value});
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onRegister(registerData);
+    }
+
     return (
         <>
             <link
@@ -25,15 +39,16 @@ const Register = () => {
                             REGISTER
                         </h1>
                         <form
+                            onSubmit={{handleSubmit}}
                             className="flex flex-col gap-5 items-start w-full"
                         >
-                            <InputField label="LOGIN"/>
-                            <InputField label="HASLO"/>
-                            <InputField label="POWTORZ HASLO"/>
+                            <InputField label="LOGIN" name={"username"} onChange={(value) => handleChange("username", value)}/>
+                            <InputField label="HASLO" name={"password"} onChange={(value) => handleChange("username", value)}/>
+                            <InputField label="POWTORZ HASLO" name={""} onChange={(value) => handleChange("username", value)}/>
 
                             <div className="flex justify-between items-center w-full max-sm:mt-5">
-                                <SwitchButton></SwitchButton>
-                                <SaveButton></SaveButton>
+                                <SwitchButton switchAction={onSwitchToLogin}></SwitchButton>
+                                <SaveButton type={'submit'}></SaveButton>
                             </div>
                         </form>
                     </div>

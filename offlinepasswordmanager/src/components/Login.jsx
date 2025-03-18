@@ -41,11 +41,13 @@ const Login = ({onLogin, onSwitchToRegister}) => {
                             onSubmit={handleSubmit}
                             className="flex flex-col gap-5 items-start w-full"
                         >
-                            <InputField label="LOGIN" name={"username"} onChange={(value) => handleChange("username", value)}/>
-                            <InputField label="HASLO" name={"password"} type={"password"} onChange={(value) => handleChange("password", value)}/>
+                            <InputField label="LOGIN" name={"username"}
+                                        onChange={(value) => handleChange("username", value)}/>
+                            <InputField label="HASLO" name={"password"} type={"password"}
+                                        onChange={(value) => handleChange("password", value)}/>
 
                             <div className="flex justify-between items-center w-full max-sm:mt-5">
-                                <SwitchButton onClick={onSwitchToRegister}></SwitchButton>
+                                <SwitchButton switchAction={onSwitchToRegister}></SwitchButton>
                                 <SaveButton type={'submit'}></SaveButton>
                             </div>
                         </form>

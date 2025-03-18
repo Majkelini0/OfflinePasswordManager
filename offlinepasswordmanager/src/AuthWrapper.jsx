@@ -12,15 +12,12 @@ function AuthWrapper() {
 
     const handleLogin = (credentials) => {
 
-
-
-        setAuthScreen('register');
+        // setAuthScreen('register');
     }
 
     const handleRegister = (credentials) => {
 
-
-        setAuthScreen('login');
+        // setAuthScreen('login');
     }
 
     if (isAuthenticated) {
@@ -41,7 +38,10 @@ function AuthWrapper() {
                         >
                             <Login
                                 onLogin={handleLogin}
-                                onSwitchToRegister={() => setAuthScreen("register")}
+                                onSwitchToRegister={() => {
+                                    setAuthScreen("register")
+                                    console.log(authScreen);
+                                }}
                             />
                         </motion.div>
                     ) : (
@@ -54,7 +54,10 @@ function AuthWrapper() {
                         >
                             <Register
                                 onRegister={handleRegister}
-                                onSwitchToLogin={() => setAuthScreen("login")}
+                                onSwitchToLogin={() => {
+                                    setAuthScreen("login")
+                                    console.log(authScreen)
+                                }}
                             />
                         </motion.div>
                     )}
