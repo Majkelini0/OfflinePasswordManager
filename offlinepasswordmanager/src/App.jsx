@@ -13,6 +13,8 @@ import DownButton from "./components/buttons/DownButtom.jsx";
 import PowerOffButton from "./components/buttons/PowerOffButton.jsx";
 import AddPasswordButton from "./components/buttons/AddPasswordButton.jsx";
 import SyncButton from "./components/buttons/SyncButton.jsx";
+import InputField from "./components/InputField.jsx";
+import React from "react";
 
 function App() {
 
