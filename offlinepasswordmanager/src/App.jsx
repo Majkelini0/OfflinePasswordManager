@@ -13,7 +13,6 @@ import DownButton from "./components/buttons/DownButtom.jsx";
 import PowerOffButton from "./components/buttons/PowerOffButton.jsx";
 import AddPasswordButton from "./components/buttons/AddPasswordButton.jsx";
 import SyncButton from "./components/buttons/SyncButton.jsx";
-import InputField from "./components/InputField.jsx";
 import React from "react";
 
 function App() {
@@ -28,7 +27,6 @@ function App() {
                     {/*LEFT PANEL*/}
                     <div
                         className="w-24 h-[840px] p-5 bg-[#2E236C] rounded-[10px] shadow-[10px_10px_10px_0px_rgba(0,0,0,0.50)] border-l-2 border-t-2 border-[#C8ACD6] inline-flex flex-col justify-start items-center gap-[560px]">
-
                         {/*PROFILE PIC + SYNC GROUP*/}
                         <div className="w-14 h-30 relative">
                             <SyncButton></SyncButton>
