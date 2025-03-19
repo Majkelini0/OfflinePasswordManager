@@ -2,13 +2,12 @@
 import React, {useState} from "react";
 import InputField from "./InputField";
 import SaveButton from "./buttons/SaveButton.jsx";
-import ClearButton from "./buttons/ClearButton.jsx";
 import SwitchButton from "./buttons/SwitchButton.jsx";
 
 const Register = ({onRegister, onSwitchToLogin}) => {
 
     const [registerData, setRegisterData] = useState({
-        username: "", password: "", passwordRepeat: ""
+        login: "", password: "", passwordRepeat: ""
     });
 
     const handleChange = (name, value) => {
@@ -39,16 +38,21 @@ const Register = ({onRegister, onSwitchToLogin}) => {
                             REGISTER
                         </h1>
                         <form
-                            onSubmit={{handleSubmit}}
+                            onSubmit={handleSubmit}
                             className="flex flex-col gap-5 items-start w-full"
                         >
-                            <InputField label="LOGIN" name={"username"} onChange={(value) => handleChange("username", value)}/>
-                            <InputField label="HASLO" name={"password"} onChange={(value) => handleChange("username", value)}/>
-                            <InputField label="POWTORZ HASLO" name={""} onChange={(value) => handleChange("username", value)}/>
+                            <InputField label="LOGIN"
+                                        onChange={(login) => handleChange("login", login)}/>
+
+                            <InputField label="HASLO"
+                                        onChange={(password) => handleChange("password", password)}/>
+
+                            <InputField label="POWTORZ HASLO"
+                                        onChange={(passwordRepeat) => handleChange("passwordRepeat", passwordRepeat)}/>
 
                             <div className="flex justify-between items-center w-full max-sm:mt-5">
-                                <SwitchButton switchAction={onSwitchToLogin}></SwitchButton>
-                                <SaveButton type={'submit'}></SaveButton>
+                                <SwitchButton onClick={onSwitchToLogin}></SwitchButton>
+                                <SaveButton type={"submit"}></SaveButton>
                             </div>
                         </form>
                     </div>

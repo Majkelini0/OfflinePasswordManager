@@ -1,5 +1,5 @@
 import './index.css';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import App from './App';
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
@@ -18,6 +18,9 @@ function AuthWrapper() {
     }
 
     const handleRegister = (credentials) => {
+        console.log("Login: " + credentials.login);
+        console.log("Password: " + credentials.password);
+        console.log("Password repeat: " + credentials.passwordRepeat);
 
         // setAuthScreen('login');
     }
@@ -46,21 +49,20 @@ function AuthWrapper() {
                             />
                         </motion.div>
                     ) : (
-                        <div>REGISTER</div>
-                        // <motion.div
-                        //     key="register"
-                        //     initial={{opacity: 0, y: 300}}
-                        //     animate={{opacity: 1, y: 0}}
-                        //     exit={{opacity: 0, y: 0}}
-                        //     transition={{duration: 0.5}}
-                        // >
-                        //     <Register
-                        //         onRegister={handleRegister}
-                        //         onSwitchToLogin={() => {
-                        //             setAuthScreen("login")
-                        //         }}
-                        //     />
-                        // </motion.div>
+                        <motion.div
+                            key="register"
+                            initial={{opacity: 0, y: 300}}
+                            animate={{opacity: 1, y: 0}}
+                            exit={{opacity: 0, y: 0}}
+                            transition={{duration: 0.5}}
+                        >
+                            <Register
+                                onRegister={handleRegister}
+                                onSwitchToLogin={() => {
+                                    setAuthScreen("login")
+                                }}
+                            />
+                        </motion.div>
                     )}
                 </AnimatePresence>
             </div>
