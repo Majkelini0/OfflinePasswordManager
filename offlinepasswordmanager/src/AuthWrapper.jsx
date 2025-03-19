@@ -11,6 +11,8 @@ function AuthWrapper() {
     const [authScreen, setAuthScreen] = useState('login');
 
     const handleLogin = (credentials) => {
+        console.log("Login: " + credentials.login);
+        console.log("Password: " + credentials.password);
 
         // setAuthScreen('register');
     }
@@ -40,26 +42,25 @@ function AuthWrapper() {
                                 onLogin={handleLogin}
                                 onSwitchToRegister={() => {
                                     setAuthScreen("register")
-                                    console.log(authScreen);
                                 }}
                             />
                         </motion.div>
                     ) : (
-                        <motion.div
-                            key="register"
-                            initial={{opacity: 0, y: 300}}
-                            animate={{opacity: 1, y: 0}}
-                            exit={{opacity: 0, y: 0}}
-                            transition={{duration: 0.5}}
-                        >
-                            <Register
-                                onRegister={handleRegister}
-                                onSwitchToLogin={() => {
-                                    setAuthScreen("login")
-                                    console.log(authScreen)
-                                }}
-                            />
-                        </motion.div>
+                        <div>REGISTER</div>
+                        // <motion.div
+                        //     key="register"
+                        //     initial={{opacity: 0, y: 300}}
+                        //     animate={{opacity: 1, y: 0}}
+                        //     exit={{opacity: 0, y: 0}}
+                        //     transition={{duration: 0.5}}
+                        // >
+                        //     <Register
+                        //         onRegister={handleRegister}
+                        //         onSwitchToLogin={() => {
+                        //             setAuthScreen("login")
+                        //         }}
+                        //     />
+                        // </motion.div>
                     )}
                 </AnimatePresence>
             </div>

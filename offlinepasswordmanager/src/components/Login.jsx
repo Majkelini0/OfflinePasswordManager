@@ -7,7 +7,7 @@ import SwitchButton from "./buttons/SwitchButton.jsx";
 const Login = ({onLogin, onSwitchToRegister}) => {
 
     const [loginData, setLoginData] = useState({
-        username: "", password: ""
+        login: "", password: ""
     });
 
     const handleChange = (name, value) => {
@@ -41,14 +41,15 @@ const Login = ({onLogin, onSwitchToRegister}) => {
                             onSubmit={handleSubmit}
                             className="flex flex-col gap-5 items-start w-full"
                         >
-                            <InputField label="LOGIN" name={"username"}
-                                        onChange={(value) => handleChange("username", value)}/>
-                            <InputField label="HASLO" name={"password"} type={"password"}
-                                        onChange={(value) => handleChange("password", value)}/>
+                            <InputField label="LOGIN"
+                                        onChange={(login) => handleChange("login", login)}/>
+
+                            <InputField label="HASLO"
+                                        onChange={(password) => handleChange("password", password)}/>
 
                             <div className="flex justify-between items-center w-full max-sm:mt-5">
-                                <SwitchButton switchAction={onSwitchToRegister}></SwitchButton>
-                                <SaveButton type={'submit'}></SaveButton>
+                                <SwitchButton onClick={onSwitchToRegister}></SwitchButton>
+                                <SaveButton type={"submit"}></SaveButton>
                             </div>
                         </form>
                     </div>
