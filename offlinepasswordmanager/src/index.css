@@ -1,17 +1,20 @@
 @import "tailwindcss";
 
-
-:root {
-  --dark: #17153B;
-  --medium: #2E236C;
-  --light: #433D8B;
-  --beige: #C8ACD6;
+@theme {
+    --color-dark: #17153B;
+    --color-medium: #2E236C;
+    --color-light: #433D8B;
+    --color-beige: #C8ACD6;
+    --color-mud-beige: #7B68A1;
+    --color-green-bright: #22FF00;
+    --color-green-light: #19B900;
+    --color-red: #820000;
 }
 
 
 @font-face {
-  font-family: 'PressStart2P';
-  src: url('/src/assets/fonts/PressStart2P-Regular.ttf') format('truetype');
+    font-family: 'PressStart2P';
+    src: url('/src/assets/fonts/PressStart2P-Regular.ttf') format('truetype');
 }
 
 /*.font-custom {*/
@@ -19,8 +22,8 @@
 /*}*/
 
 @font-face {
-  font-family: 'Handjet';
-  src: url('/src/assets/fonts/Handjet-Light.ttf') format('truetype');
+    font-family: 'Handjet';
+    src: url('/src/assets/fonts/Handjet-Light.ttf') format('truetype');
 }
 
 /*.font-custom {*/
@@ -28,6 +31,6 @@
 /*}*/
 
 @font-face {
-  font-family: 'Outfit';
-  src: url('/src/assets/fonts/Outfit-Medium.ttf') format('truetype');
+    font-family: 'Outfit';
+    src: url('/src/assets/fonts/Outfit-Medium.ttf') format('truetype');
 }

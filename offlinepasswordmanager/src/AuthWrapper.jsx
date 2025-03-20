@@ -31,7 +31,7 @@ function AuthWrapper() {
 
     return (
         <>
-            <div className="fixed inset-0 bg-[var(--dark)] flex justify-center items-center z-50">
+            <div className="fixed inset-0 bg-dark flex justify-center items-center z-50">
                 <AnimatePresence mode="wait">
                     {authScreen === "login" ? (
                         <motion.div

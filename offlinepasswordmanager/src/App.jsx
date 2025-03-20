@@ -1,4 +1,3 @@
-import './App.css'
 import './index.css'
 import DefaultInput from "./components/DefaultInput.jsx";
 import ClearButton from "./components/buttons/ClearButton.jsx";

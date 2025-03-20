@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tailwindcss/cli": "^4.0.14",
     "@tailwindcss/vite": "^4.0.14",
     "bcrypt": "^5.1.1",
     "framer-motion": "^12.5.0",
