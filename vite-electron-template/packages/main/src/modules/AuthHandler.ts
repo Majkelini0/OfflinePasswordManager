@@ -7,22 +7,15 @@ import bcrypt from 'bcrypt';
 // import dialog = Electron.dialog;
 
 class AuthHandler implements AppModule {
-    //private passwordManager: PasswordManager;
+    private passwordManager: PasswordManager | null = null;
 
     async enable({app}: ModuleContext): Promise<void> {
 
         ipcMain.handle('auth:register', async (_event, registerData) => {
             try {
                 const credentials = JSON.parse(registerData);
-
                 const passwordManager = PasswordManager.fromRegistration(credentials.folderPath, credentials.login);
-
-                // Hash password before storing
-                const saltRounds = 12; // 13 ?
-                const hashedPassword = await bcrypt.hash(credentials.password, saltRounds);
-
-                await passwordManager.setMasterPassword(hashedPassword);
-
+                await passwordManager.setMasterPassword(credentials.password);
                 return {success: true, message: 'User registered successfully'};
             } catch (error) {
                 console.error('Registration error:', error);
@@ -33,12 +26,10 @@ class AuthHandler implements AppModule {
         ipcMain.handle('auth:login', async (_event, loginData) => {
             try {
                 const credentials = JSON.parse(loginData);
-
                 const passwordManager = PasswordManager.fromLogin(credentials.filePath);
-
-                // Check if password is correct
-
-
+                await passwordManager.setMasterPassword(credentials.password);
+                await passwordManager.authenticatePassword();
+                this.passwordManager = passwordManager;
                 return {success: true, message: 'User login successfully'};
             } catch (error) {
                 console.error('Login error:', error);
@@ -70,6 +61,10 @@ class AuthHandler implements AppModule {
             }
 
             return {canceled: false, filePath: result.filePaths[0]};
+        })
+
+        ipcMain.handle('auth:getPasswords', async (_event) => {
+
         })
     }
 }

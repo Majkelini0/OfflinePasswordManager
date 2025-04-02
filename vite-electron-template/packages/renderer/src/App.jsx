@@ -9,8 +9,8 @@ function App() {
     const [authScreen, setAuthScreen] = useState('login');
     const [registerStatus, setRegisterStatus] = useState(null);
     const [loginStatus, setLoginStatus] = useState(null);
-    const [folderPath, setFolderPath] = useState('');
-    const [filePath, setFilePath] = useState('');
+    const [folderPath, setFolderPath] = useState(null);
+    const [filePath, setFilePath] = useState(null);
 
     const handleLogin = async (credentials) => {
         try{

@@ -15,6 +15,9 @@ export class PasswordManager {
     }
 
     static fromRegistration(folderPath: string, fileName: string): PasswordManager {
+        if(folderPath == null) {
+            folderPath = app.getPath('documents');
+        }
         if (!fs.existsSync(folderPath)) {
             throw new Error('Folder does not exist');
         }
@@ -27,23 +30,67 @@ export class PasswordManager {
     static fromLogin(filePath: string): PasswordManager {
         if (!fs.existsSync(filePath)) {
             throw new Error('File does not exist');
-
         }
         return new PasswordManager(filePath, path.basename(filePath));
     }
 
+    async authenticatePassword(): Promise<void> {
+        try {
+            if (!this.masterPassword) {
+                throw new Error('Master password not set');
+            }
+            if (!fs.existsSync(this.filePath)) {
+                throw new Error('Password file does not exist');
+            }
+            const fileContent = fs.readFileSync(this.filePath, 'utf8');
+            if (!fileContent || fileContent.length === 0) {
+                throw new Error('Password file is empty');
+            }
+
+            const { salt, iv, data } = JSON.parse(fileContent);
+            const key = this.deriveKeyFromPassword(this.masterPassword, salt);
+
+            try {
+                const decipher = crypto.createDecipheriv(
+                    'aes-256-cbc',
+                    key,
+                    Buffer.from(iv, 'hex')
+                );
+
+                let decrypted = decipher.update(data, 'base64', 'utf8');
+                decrypted += decipher.final('utf8');
+                console.log("decrypted += decipher.final('utf8')");
+
+                // Verify the decrypted content is valid JSON
+                JSON.parse(decrypted);
+                console.log("is valid JSON");
+
+                // If we reach here, decryption was successful
+                return;
+            } catch (error) {
+                this.masterPassword = null;
+                throw new Error('Invalid password');
+            }
+        } catch (error) {
+            this.masterPassword = null;
+            if (error.message === 'Invalid password') {
+                throw error;
+            } else {
+                throw new Error('Authentication failed: ' + error.message);
+            }
+        }
+    }
 
     async setMasterPassword(password: string): Promise<void> {
         this.masterPassword = password;
 
-        const structure = JSON.stringify({
-            name: null,
-            url: null,
-            login: null,
-            password: null,
-            comment: null
-
-        });
+        // const structure = JSON.stringify({
+        //     name: null,
+        //     url: null,
+        //     login: null,
+        //     password: null,
+        //     comment: null
+        // });
 
         // Create empty password store if it doesn't exist
         if (!fs.existsSync(this.filePath)) {
@@ -132,6 +179,7 @@ export class PasswordManager {
         const dataString = JSON.stringify(passwords);
         // Generate a random IV for each encryption
         const iv = crypto.randomBytes(16);
+        console.log("iv: ", iv);
 
         // Derive key from master password
         const key = this.deriveKeyFromPassword(this.masterPassword, salt);
@@ -154,7 +202,12 @@ export class PasswordManager {
             fs.mkdirSync(dir, {recursive: true});
         }
 
-        fs.writeFileSync(this.filePath, result);
+        try{
+            fs.writeFileSync(this.filePath, result);
+        }
+        catch (error){
+            throw new Error('Failed to save password file');
+        }
     }
 
     // Add this method to generate an encryption key from the master password
