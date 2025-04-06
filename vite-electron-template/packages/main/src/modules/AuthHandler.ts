@@ -1,6 +1,7 @@
 import type {AppModule} from '../AppModule.js';
 import {ModuleContext} from '../ModuleContext.js';
 import {PasswordManager} from './PasswordManager.js';
+import {ConfigManager} from './ConfigManager.js';
 import {ipcMain, dialog} from 'electron';
 import bcrypt from 'bcrypt';
 
@@ -8,6 +9,7 @@ import bcrypt from 'bcrypt';
 
 class AuthHandler implements AppModule {
     private passwordManager: PasswordManager | null = null;
+    // private configManager: ConfigManager | null = null;
 
     async enable({app}: ModuleContext): Promise<void> {
 

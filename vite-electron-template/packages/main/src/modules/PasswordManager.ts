@@ -1,5 +1,4 @@
 import {app} from 'electron';
-import {safeStorage} from 'electron';
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';

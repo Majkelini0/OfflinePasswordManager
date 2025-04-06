@@ -9,6 +9,7 @@ import {allowInternalOrigins} from './modules/BlockNotAllowdOrigins.js';
 import {allowExternalUrls} from './modules/ExternalUrls.js';
 
 import {createAuthHandler} from './modules/AuthHandler.js';
+import {ConfigManager} from "./modules/ConfigManager.js";
 
 
 export async function initApp(initConfig: AppInitConfig) {
@@ -20,6 +21,7 @@ export async function initApp(initConfig: AppInitConfig) {
         .init(hardwareAccelerationMode({enable: false}))
         .init(autoUpdater())
         .init(createAuthHandler())
+        // .init(ConfigManager())
 
         // Install DevTools extension if needed
         // .init(chromeDevToolsExtension({extension: 'VUEJS3_DEVTOOLS'}))
