@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 
-function DownButton({type, onClick}) {
+function DownButton({type, onClick, message}) {
     return (
         <>
             <button
                 onClick={onClick}
                 type={type || 'button'}
+                title={message}
                 className="self-stretch h-5 bg-violet-300 hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] inline-flex justify-center items-center">
                 <div className="w-6 h-6 relative flex justify-center items-center">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

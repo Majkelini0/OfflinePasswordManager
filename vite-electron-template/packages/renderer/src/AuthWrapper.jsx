@@ -1,7 +1,7 @@
 import './index.css';
 import React, {useState} from 'react';
-import Login from './components/Login.jsx';
-import Register from './components/Register.jsx';
+import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
 import {AnimatePresence, motion} from 'framer-motion';
 
 

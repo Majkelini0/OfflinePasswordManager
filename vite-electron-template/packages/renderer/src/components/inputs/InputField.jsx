@@ -1,6 +1,6 @@
 "use client";
 import React, {useState} from "react";
-import ClearButton from "./buttons/ClearButton.jsx";
+import ClearButton from "../buttons/ClearButton.jsx";
 
 const InputField = ({label, name, onChange}) => {
 
@@ -39,7 +39,7 @@ const InputField = ({label, name, onChange}) => {
 
                     // aria-label={label}
                 />
-                <ClearButton onClick={handleClear}></ClearButton>
+                <ClearButton onClick={handleClear} message={"Clear input"}></ClearButton>
             </div>
         </div>
     );

@@ -1,9 +1,9 @@
 "use client";
 import React, {useState} from "react";
-import InputField from "./InputField";
-import SaveButton from "./buttons/SaveButton.jsx";
-import SwitchButton from "./buttons/SwitchButton.jsx";
-import ChooseFolder from "./buttons/ChooseFolder.jsx";
+import InputField from "../components/inputs/InputField.jsx";
+import SaveButton from "../components/buttons/SaveButton.jsx";
+import SwitchButton from "../components/buttons/SwitchButton.jsx";
+import ChooseFolder from "../components/buttons/ChooseFolder.jsx";
 
 const Register = ({onRegister, onSwitchToLogin, onSelectFolder}) => {
 
@@ -52,9 +52,9 @@ const Register = ({onRegister, onSwitchToLogin, onSelectFolder}) => {
                                         onChange={(passwordRepeat) => handleChange("passwordRepeat", passwordRepeat)}/>
 
                             <div className="flex justify-between items-center w-full max-sm:mt-5">
-                                <SwitchButton onClick={onSwitchToLogin}></SwitchButton>
-                                <ChooseFolder onClick={onSelectFolder}></ChooseFolder>
-                                <SaveButton type={'submit'}></SaveButton>
+                                <SwitchButton onClick={onSwitchToLogin} message={"Switch to Login"}></SwitchButton>
+                                <ChooseFolder onClick={onSelectFolder} message={"Choose folder to save passwords file"}></ChooseFolder>
+                                <SaveButton type={'submit'} message={"Register"}></SaveButton>
                             </div>
                         </form>
                     </div>

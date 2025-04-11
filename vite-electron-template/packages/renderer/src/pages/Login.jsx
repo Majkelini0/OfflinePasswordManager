@@ -1,9 +1,9 @@
 "use client";
 import React, {useState} from "react";
-import InputField from "./InputField";
-import SaveButton from "./buttons/SaveButton.jsx";
-import SwitchButton from "./buttons/SwitchButton.jsx";
-import ChooseFolder from "./buttons/ChooseFolder.jsx";
+import InputField from "../components/inputs/InputField.jsx";
+import SaveButton from "../components/buttons/SaveButton.jsx";
+import SwitchButton from "../components/buttons/SwitchButton.jsx";
+import ChooseFolder from "../components/buttons/ChooseFolder.jsx";
 
 const Login = ({onLogin, onSwitchToRegister, onSelectFile}) => {
 
@@ -49,9 +49,9 @@ const Login = ({onLogin, onSwitchToRegister, onSelectFile}) => {
                                         onChange={(password) => handleChange("password", password)}/>
 
                             <div className="flex justify-between items-center w-full max-sm:mt-5">
-                                <SwitchButton onClick={onSwitchToRegister}></SwitchButton>
-                                <ChooseFolder onClick={onSelectFile}></ChooseFolder>
-                                <SaveButton type={"submit"}></SaveButton>
+                                <SwitchButton onClick={onSwitchToRegister} message={"Switch to Register"}></SwitchButton>
+                                <ChooseFolder onClick={onSelectFile} message={"Choose File to load"}></ChooseFolder>
+                                <SaveButton type={"submit"} message={"Log In"}></SaveButton>
                             </div>
                         </form>
                     </div>

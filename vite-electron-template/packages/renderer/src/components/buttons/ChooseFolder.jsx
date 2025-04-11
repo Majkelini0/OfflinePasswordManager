@@ -1,12 +1,13 @@
 ﻿import PropTypes from "prop-types";
 
-function ChooseFolder({type, onClick}) {
+function ChooseFolder({type, onClick, message}) {
     return (
         <>
             <button
                 onClick={onClick}
                 type={type || 'button'}
-                className="w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center">
+                title={message}
+                className=" w-10 h-10 p-2 bg-[#17153B] hover:bg-[#7B68A1] active:bg-[#C8ACD6] transition-colors duration-100 ease-linear hover:scale-110 rounded-[5px] shadow-[4px_4px_8px_0px_rgba(0,0,0,0.50)] flex justify-start items-center">
                 <div className="w-6 h-6 relative overflow-hidden">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_153_153)">
@@ -30,5 +31,6 @@ export default ChooseFolder;
 
 ChooseFolder.propTypes = {
     type: PropTypes.string,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    message: PropTypes.string
 }

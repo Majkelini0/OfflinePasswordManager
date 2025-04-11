@@ -1,17 +1,17 @@
-import './index.css';
-import DefaultInput from './components/DefaultInput.jsx';
-import ClearButton from './components/buttons/ClearButton.jsx';
-import EditButton from './components/buttons/EditButton.jsx';
-import RedClearButton from './components/buttons/RedClearButton.jsx';
-import CancellButton from './components/buttons/CancellButton.jsx';
-import SaveButton from './components/buttons/SaveButton.jsx';
-import PreviewButton from './components/buttons/PreviewButton.jsx';
-import DeleteButton from './components/buttons/DeleteButton.jsx';
-import UpButton from './components/buttons/UpButton.jsx';
-import DownButton from './components/buttons/DownButtom.jsx';
-import PowerOffButton from './components/buttons/PowerOffButton.jsx';
-import AddPasswordButton from './components/buttons/AddPasswordButton.jsx';
-import SyncButton from './components/buttons/SyncButton.jsx';
+import '../index.css';
+import DefaultInput from '../components/inputs/DefaultInput.jsx';
+import ClearButton from '../components/buttons/ClearButton.jsx';
+import EditButton from '../components/buttons/EditButton.jsx';
+import RedClearButton from '../components/buttons/RedClearButton.jsx';
+import CancellButton from '../components/buttons/CancellButton.jsx';
+import SaveButton from '../components/buttons/SaveButton.jsx';
+import PreviewButton from '../components/buttons/PreviewButton.jsx';
+import DeleteButton from '../components/buttons/DeleteButton.jsx';
+import UpButton from '../components/buttons/UpButton.jsx';
+import DownButton from '../components/buttons/DownButtom.jsx';
+import PowerOffButton from '../components/buttons/PowerOffButton.jsx';
+import AddPasswordButton from '../components/buttons/AddPasswordButton.jsx';
+import SyncButton from '../components/buttons/SyncButton.jsx';
 import React from 'react';
 
 function MainWindow() {

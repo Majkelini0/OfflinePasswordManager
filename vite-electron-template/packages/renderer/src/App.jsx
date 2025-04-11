@@ -2,7 +2,7 @@ import {useState} from 'react';
 import AuthWrapper from './AuthWrapper';
 // import {sha256sum, send} from '#preload';
 import {sha256sum, send} from '@app/preload';
-import MainWindow from "./MainWindow.jsx";
+import MainWindow from "./pages/MainWindow.jsx";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
