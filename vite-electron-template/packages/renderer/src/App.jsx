@@ -15,6 +15,7 @@ function App() {
     const handleLogin = async (credentials) => {
         try{
             const loginData = JSON.stringify({
+                login: credentials.login,
                 password: credentials.password,
                 filePath: filePath
             });

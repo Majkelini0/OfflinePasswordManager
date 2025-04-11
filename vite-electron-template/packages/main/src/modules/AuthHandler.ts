@@ -5,8 +5,6 @@ import {ConfigManager} from './ConfigManager.js';
 import {ipcMain, dialog} from 'electron';
 import bcrypt from 'bcrypt';
 
-// import dialog = Electron.dialog;
-
 class AuthHandler implements AppModule {
     private passwordManager: PasswordManager | null = null;
     // private configManager: ConfigManager | null = null;
@@ -17,7 +15,10 @@ class AuthHandler implements AppModule {
             try {
                 const credentials = JSON.parse(registerData);
                 const passwordManager = PasswordManager.fromRegistration(credentials.folderPath, credentials.login);
+
                 await passwordManager.setMasterPassword(credentials.password);
+                await passwordManager.createEncryptedPasswordsFile();
+
                 return {success: true, message: 'User registered successfully'};
             } catch (error) {
                 console.error('Registration error:', error);
@@ -31,6 +32,7 @@ class AuthHandler implements AppModule {
                 const passwordManager = PasswordManager.fromLogin(credentials.filePath);
                 await passwordManager.setMasterPassword(credentials.password);
                 await passwordManager.authenticatePassword();
+
                 this.passwordManager = passwordManager;
                 return {success: true, message: 'User login successfully'};
             } catch (error) {
