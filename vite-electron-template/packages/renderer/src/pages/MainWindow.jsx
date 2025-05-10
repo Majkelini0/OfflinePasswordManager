@@ -12,9 +12,28 @@ import DownButton from '../components/buttons/DownButtom.jsx';
 import PowerOffButton from '../components/buttons/PowerOffButton.jsx';
 import AddPasswordButton from '../components/buttons/AddPasswordButton.jsx';
 import SyncButton from '../components/buttons/SyncButton.jsx';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {sha256sum, send} from '@app/preload';
 
-function MainWindow() {
+function MainWindow({credentials}) {
+
+    const [passwords, setPasswords] = useState([]);
+    const [selectedPassword, setSelectedPassword] = useState(null);
+
+    useEffect(() => {
+        const fetchPasswords = async () => {
+            const response = await send('main:getAllServices', credentials) /*await window.api.getAllServices();*/
+            if (response.success) {
+                setPasswords(response.services);
+            } else {
+                console.error(response.message);
+            }
+        };
+        console.log("haselka: " + passwords);
+
+        fetchPasswords();
+    }, []);
+    // response = await send('auth:login', loginData);
 
     return (
         <>
@@ -44,19 +63,13 @@ function MainWindow() {
                     <div
                         className="w-[720px] h-[840px] px-3 py-5 bg-[#2E236C] rounded-[10px] shadow-[10px_10px_10px_0px_rgba(0,0,0,0.50)] border-l-2 border-t-2 border-[#C8ACD6] inline-flex flex-col justify-start items-start gap-2.5">
                         <div className="w-[688.18px] flex flex-col justify-start items-start gap-2.5">
-
-
                             {/*PASSWORD X*/}
                             <div className="self-stretch relative inline-flex justify-start items-center gap-3">
                                 <div
                                     className="w-[582.18px] h-14 bg-[#17153B] rounded-[10px] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.50)]" />
-                                {/*PREVIEW + DELETE BUTTONS GROUP*/}
-                                <div className="flex justify-start items-center gap-3">
-                                    <PreviewButton></PreviewButton>
-                                    <DeleteButton></DeleteButton>
-                                </div>
+
+                                {/*NAZWA + KOMENTARZ GROUP*/}
                                 <div className="left-[10px] top-[4px] absolute flex justify-start items-center gap-5">
-                                    {/*NAZWA + KOMENTARZ GROUP*/}
                                     <div
                                         className="w-[525px] inline-flex flex-col justify-start items-start gap-1">
                                         <div
@@ -74,35 +87,10 @@ function MainWindow() {
                                         <DownButton></DownButton>
                                     </div>
                                 </div>
-                            </div>
-
-                            {/*PASSWORD X*/}
-                            <div className="self-stretch relative inline-flex justify-start items-center gap-3">
-                                <div
-                                    className="w-[582.18px] h-14 bg-[#17153B] rounded-[10px] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.50)]" />
                                 {/*PREVIEW + DELETE BUTTONS GROUP*/}
                                 <div className="flex justify-start items-center gap-3">
                                     <PreviewButton></PreviewButton>
                                     <DeleteButton></DeleteButton>
-                                </div>
-                                <div className="left-[10px] top-[4px] absolute flex justify-start items-center gap-5">
-                                    {/*NAZWA + KOMENTARZ GROUP*/}
-                                    <div
-                                        className="w-[525px] inline-flex flex-col justify-start items-start gap-1">
-                                        <div
-                                            className="self-stretch justify-start text-[#22FF00] text-base font-normal font-['PressStart2P'] tracking-[3.20px]">Hasło
-                                            do konta gakko
-                                        </div>
-                                        <div
-                                            className="self-stretch justify-start text-[#C8ACD6] text-sm font-medium font-['Outfit']">Opis
-                                            hasła, xxx yyy zzz qqq www
-                                        </div>
-                                    </div>
-                                    {/*UP / DOWN BUTTONS GROUP*/}
-                                    <div className="w-5 inline-flex flex-col justify-start items-start gap-1.5">
-                                        <UpButton></UpButton>
-                                        <DownButton></DownButton>
-                                    </div>
                                 </div>
                             </div>
 

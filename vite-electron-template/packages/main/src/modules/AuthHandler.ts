@@ -11,6 +11,22 @@ class AuthHandler implements AppModule {
 
     async enable({app}: ModuleContext): Promise<void> {
 
+        ipcMain.handle('main:getAllServices', async (_event, loginData) => {
+            try{
+                const credentials = JSON.parse(loginData);
+                const passwordManager = PasswordManager.fromLogin(credentials.filePath);
+                await passwordManager.setMasterPassword(credentials.password);
+                await passwordManager.authenticatePassword();
+
+                const services = await passwordManager.getAllServices();
+
+                return {success: true, message: 'User login successfully', services: services};
+            } catch (error) {
+                console.error('Login error:', error);
+                return {success: false, message: 'Login failed'};
+            }
+        });
+
         ipcMain.handle('auth:register', async (_event, registerData) => {
             try {
                 const credentials = JSON.parse(registerData);

@@ -4,9 +4,11 @@ import path from 'path';
 import crypto from 'crypto';
 
 export class PasswordManager {
+    private static fileExtension = '.opm';
     private filePath: string;
     private fileName: string;
     private masterPassword: string | null = null;
+
 
     constructor(filePath: string, fileName: string) {
         this.filePath = filePath;
@@ -14,6 +16,7 @@ export class PasswordManager {
     }
 
     static fromRegistration(folderPath: string, fileName: string): PasswordManager {
+        fileName = fileName + this.fileExtension; // !!!
         if (folderPath == null) {
             folderPath = app.getPath('documents');
         }
@@ -27,6 +30,9 @@ export class PasswordManager {
     }
 
     static fromLogin(filePath: string): PasswordManager {
+        if(!filePath.endsWith(this.fileExtension)) {
+            throw new Error('Invalid file extension');
+        }
         if (!fs.existsSync(filePath)) {
             throw new Error('File does not exist');
         }
@@ -63,77 +69,79 @@ export class PasswordManager {
         this.masterPassword = password;
     }
 
-    async addPassword(service: string, username: string, password: string): Promise<void> {
-        if (!this.masterPassword) {
-            throw new Error('Master password not set');
-        }
+    // async addPassword(service: string, username: string, password: string): Promise<void> {
+    //     if (!this.masterPassword) {
+    //         throw new Error('Master password not set');
+    //     }
+    //
+    //     const passwords = await this.getPasswords();
+    //
+    //     passwords[service] = {
+    //         username,
+    //         password,
+    //         createdAt: new Date().toISOString(),
+    //     };
+    //
+    //     await this.savePasswords(passwords);
+    // }
 
-        const passwords = await this.getPasswords();
-
-        passwords[service] = {
-            username,
-            password,
-            createdAt: new Date().toISOString(),
-        };
-
-        await this.savePasswords(passwords);
-    }
-
-    async getPassword(service: string): Promise<{ username: string, password: string } | null> {
-        const passwords = await this.getPasswords();
-        return passwords[service] || null;
-    }
+    // async getPassword(service: string): Promise<{ username: string, password: string } | null> {
+    //     const passwords = await this.getPasswords();
+    //     return passwords[service] || null;
+    // }
 
     async getAllServices(): Promise<string[]> {
-        const passwords = await this.getPasswords();
-        return Object.keys(passwords);
+        const encryptedFile = fs.readFileSync(this.filePath, 'utf8');
+        const passwords = this.decrypt(encryptedFile);
+        // console.log(passwords);
+        return passwords;
     }
 
-    async deletePassword(service: string): Promise<boolean> {
-        const passwords = await this.getPasswords();
+    // async deletePassword(service: string): Promise<boolean> {
+    //     const passwords = await this.getPasswords();
+    //
+    //     if (!passwords[service]) return false;
+    //
+    //     delete passwords[service];
+    //     await this.savePasswords(passwords);
+    //     return true;
+    // }
 
-        if (!passwords[service]) return false;
-
-        delete passwords[service];
-        await this.savePasswords(passwords);
-        return true;
-    }
-
-    private async getPasswords(): Promise<Record<string, any>> {
-        if (!this.masterPassword) {
-            throw new Error('Master password not set');
-        }
-
-        if (!fs.existsSync(this.filePath)) {
-            return {};
-        }
-
-        try {
-            const fileContent = fs.readFileSync(this.filePath, 'utf8');
-            if (!fileContent || fileContent.length === 0) return {};
-
-            // Parse the stored data
-            const {salt, iv, data} = JSON.parse(fileContent);
-
-            // Derive key from master password
-            const key = this.deriveKeyFromPassword(this.masterPassword, salt);
-
-            // Create decipher and decrypt
-            const decipher = crypto.createDecipheriv(
-                'aes-256-cbc',
-                key,
-                Buffer.from(iv, 'hex')
-            );
-
-            let decrypted = decipher.update(data, 'base64', 'utf8');
-            decrypted += decipher.final('utf8');
-
-            return JSON.parse(decrypted);
-        } catch (error) {
-            console.error('Failed to decrypt password file:', error);
-            return {};
-        }
-    }
+    // private async getPasswords(): Promise<Record<string, any>> {
+    //     if (!this.masterPassword) {
+    //         throw new Error('Master password not set');
+    //     }
+    //
+    //     if (!fs.existsSync(this.filePath)) {
+    //         return {};
+    //     }
+    //
+    //     try {
+    //         const fileContent = fs.readFileSync(this.filePath, 'utf8');
+    //         if (!fileContent || fileContent.length === 0) return {};
+    //
+    //         // Parse the stored data
+    //         const {salt, iv, data} = JSON.parse(fileContent);
+    //
+    //         // Derive key from master password
+    //         const key = this.deriveKeyFromPassword(this.masterPassword, salt);
+    //
+    //         // Create decipher and decrypt
+    //         const decipher = crypto.createDecipheriv(
+    //             'aes-256-cbc',
+    //             key,
+    //             Buffer.from(iv, 'hex')
+    //         );
+    //
+    //         let decrypted = decipher.update(data, 'base64', 'utf8');
+    //         decrypted += decipher.final('utf8');
+    //
+    //         return JSON.parse(decrypted);
+    //     } catch (error) {
+    //         console.error('Failed to decrypt password file:', error);
+    //         return {};
+    //     }
+    // }
 
     async createEncryptedPasswordsFile(): Promise<void> {
         if (!this.masterPassword) {
@@ -141,12 +149,19 @@ export class PasswordManager {
         }
 
         const example = {
-            'example.com': {
+            1:{
+                name: 'example.com',
                 url: 'www.url.com',
                 login: 'example@gmail.com',
                 password: 'password',
                 comment: 'example comment',
-                // lastEdited: new Date().toISOString(),
+            },
+            2:{
+                name: 'gakko',
+                url: 'www.gakko.com',
+                login: 's27799',
+                password: 'password',
+                comment: 'example comment',
             }
         }
 
@@ -167,7 +182,7 @@ export class PasswordManager {
         try {
             fs.writeFileSync(this.filePath, encryptedFile);
         } catch (error) {
-            throw new Error('Failed to save password file');
+            throw new Error('Failed to save password file: ' + error.message);
         }
     }
 
@@ -215,9 +230,10 @@ export class PasswordManager {
             // Verify the decrypted content is valid JSON
             JSON.parse(decrypted);
             console.log("valid JSON");
+            // console.log(decrypted);
 
             // If we reach here, decryption was successful
-            return;
+            return JSON.parse(decrypted);
         } catch (error) {
             this.masterPassword = null;
             console.log("Invalid password");

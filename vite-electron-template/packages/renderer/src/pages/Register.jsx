@@ -42,7 +42,7 @@ const Register = ({onRegister, onSwitchToLogin, onSelectFolder}) => {
                             onSubmit={handleSubmit}
                             className="flex flex-col gap-5 items-start w-full"
                         >
-                            <InputField label="LOGIN"
+                            <InputField label="FILE NAME"
                                         onChange={(login) => handleChange("login", login)}/>
 
                             <InputField label="HASLO"

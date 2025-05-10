@@ -11,9 +11,21 @@ function App() {
     const [loginStatus, setLoginStatus] = useState(null);
     const [folderPath, setFolderPath] = useState(null);
     const [filePath, setFilePath] = useState(null);
+    const [credentials, setCredentials] = useState(null);
 
     const handleLogin = async (credentials) => {
-        try{
+        try {
+            if (filePath === null) {
+                setLoginStatus({success: false, message: 'File path cannot be empty'});
+                console.log('File path cannot be empty');
+                return;
+            }
+            if (credentials.password.trim() === '') {
+                setLoginStatus({success: false, message: 'Password cannot be empty'});
+                console.log('Password cannot be empty');
+                return;
+            }
+
             const loginData = JSON.stringify({
                 login: credentials.login,
                 password: credentials.password,
@@ -23,10 +35,11 @@ function App() {
 
             setLoginStatus(response);
 
-            if(response.success){
+            if (response.success) {
+                setCredentials(loginData);
                 setIsAuthenticated(true);
             }
-        }catch(error){
+        } catch (error) {
             console.error('Login error: ', error);
         }
     };
@@ -36,6 +49,11 @@ function App() {
             if (credentials.password !== credentials.passwordRepeat) {
                 setRegisterStatus({success: false, message: 'Passwords do not match'});
                 console.log('Passwords do not match');
+                return;
+            }
+            if (credentials.login.trim() === '') {
+                setRegisterStatus({success: false, message: 'Filename cannot be empty'});
+                console.log('Filename cannot be empty');
                 return;
             }
             // Never send plain passwords through IPC
@@ -81,7 +99,9 @@ function App() {
     };
 
     if (isAuthenticated) {
-        return <MainWindow/>;
+        return <MainWindow
+            credentials={credentials}
+        />;
     }
 
     return (
