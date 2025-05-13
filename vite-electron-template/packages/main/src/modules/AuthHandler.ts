@@ -7,20 +7,22 @@ import bcrypt from 'bcrypt';
 
 class AuthHandler implements AppModule {
     private passwordManager: PasswordManager | null = null;
+
     // private configManager: ConfigManager | null = null;
 
     async enable({app}: ModuleContext): Promise<void> {
 
-        ipcMain.handle('main:getAllServices', async (_event, loginData) => {
-            try{
+        ipcMain.handle('main:getAllPasswords', async (_event, loginData) => {
+            try {
                 const credentials = JSON.parse(loginData);
                 const passwordManager = PasswordManager.fromLogin(credentials.filePath);
                 await passwordManager.setMasterPassword(credentials.password);
                 await passwordManager.authenticatePassword();
 
-                const services = await passwordManager.getAllServices();
+                const passwords = await passwordManager.getAllPasswords();
+                //TODO: pass an array of passwords to the renderer process
 
-                return {success: true, message: 'User login successfully', services: services};
+                return {success: true, message: 'Passwords obtained succesfully', passwords: passwords};
             } catch (error) {
                 console.error('Login error:', error);
                 return {success: false, message: 'Login failed'};
@@ -52,7 +54,8 @@ class AuthHandler implements AppModule {
                 this.passwordManager = passwordManager;
                 return {success: true, message: 'User login successfully'};
             } catch (error) {
-                console.error('Login error:', error);
+                // console.error('Login error:', error);
+                console.error(error.message);
                 return {success: false, message: 'Login failed'};
             }
         })

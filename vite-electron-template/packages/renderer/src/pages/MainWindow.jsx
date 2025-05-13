@@ -18,22 +18,21 @@ import {sha256sum, send} from '@app/preload';
 function MainWindow({credentials}) {
 
     const [passwords, setPasswords] = useState([]);
-    const [selectedPassword, setSelectedPassword] = useState(null);
 
     useEffect(() => {
         const fetchPasswords = async () => {
-            const response = await send('main:getAllServices', credentials) /*await window.api.getAllServices();*/
+            const response = await send('main:getAllPasswords', credentials)
+
             if (response.success) {
-                setPasswords(response.services);
+                setPasswords(response.passwords);
+                console.log("response.passwords: " + JSON.stringify(response.passwords));
             } else {
                 console.error(response.message);
             }
         };
-        console.log("haselka: " + passwords);
 
         fetchPasswords();
     }, []);
-    // response = await send('auth:login', loginData);
 
     return (
         <>
@@ -48,7 +47,7 @@ function MainWindow({credentials}) {
                         {/*PROFILE PIC + SYNC GROUP*/}
                         <div className="relative flex flex-col justify-start items-center gap-5">
                             {/*PROFILE PIC*/}
-                            <button className="w-14 h-14 bg-zinc-300 rounded-full" />
+                            <button className="w-14 h-14 bg-zinc-300 rounded-full"/>
                             <SyncButton></SyncButton>
                         </div>
 
@@ -66,7 +65,7 @@ function MainWindow({credentials}) {
                             {/*PASSWORD X*/}
                             <div className="self-stretch relative inline-flex justify-start items-center gap-3">
                                 <div
-                                    className="w-[582.18px] h-14 bg-[#17153B] rounded-[10px] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.50)]" />
+                                    className="w-[582.18px] h-14 bg-[#17153B] rounded-[10px] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.50)]"/>
 
                                 {/*NAZWA + KOMENTARZ GROUP*/}
                                 <div className="left-[10px] top-[4px] absolute flex justify-start items-center gap-5">
@@ -104,7 +103,7 @@ function MainWindow({credentials}) {
                         className="w-[500px] h-[840px] p-5 bg-[#2E236C] rounded-[10px] shadow-[10px_10px_10px_0px_rgba(0,0,0,0.50)] border-l-2 border-t-2 border-[#C8ACD6] inline-flex flex-col justify-start items-start gap-8">
                         <div className="px-5 inline-flex justify-center items-center gap-2.5">
                             <div
-                                className="justify-start text-[#C8ACD6] text-6xl font-light font-['Handjet'] leading-[60px] tracking-[25.60px]">P@SSWORD<br />MANAGER
+                                className="justify-start text-[#C8ACD6] text-6xl font-light font-['Handjet'] leading-[60px] tracking-[25.60px]">P@SSWORD<br/>MANAGER
                             </div>
                         </div>
 

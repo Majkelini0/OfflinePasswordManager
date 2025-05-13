@@ -2,9 +2,10 @@ import {app} from 'electron';
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import {Password} from './Password.js';
 
 export class PasswordManager {
-    private static fileExtension = '.opm';
+    private static fileExtension = '.mpm';
     private filePath: string;
     private fileName: string;
     private masterPassword: string | null = null;
@@ -17,20 +18,21 @@ export class PasswordManager {
 
     static fromRegistration(folderPath: string, fileName: string): PasswordManager {
         fileName = fileName + this.fileExtension; // !!!
+        const filePath = path.join(folderPath, fileName);
         if (folderPath == null) {
             folderPath = app.getPath('documents');
         }
         if (!fs.existsSync(folderPath)) {
             throw new Error('Folder does not exist');
         }
-        if (fs.existsSync(path.join(folderPath, fileName))) {
+        if (fs.existsSync(filePath)) {
             throw new Error('File already exists');
         }
-        return new PasswordManager(path.join(folderPath, fileName), fileName);
+        return new PasswordManager(filePath, fileName);
     }
 
     static fromLogin(filePath: string): PasswordManager {
-        if(!filePath.endsWith(this.fileExtension)) {
+        if (!filePath.endsWith(this.fileExtension)) {
             throw new Error('Invalid file extension');
         }
         if (!fs.existsSync(filePath)) {
@@ -56,121 +58,32 @@ export class PasswordManager {
             this.decrypt(encryptedFile);
 
         } catch (error) {
-            this.masterPassword = null;
-            if (error.message === 'Invalid password') {
-                throw error;
-            } else {
-                throw new Error('Authentication failed: ' + error.message);
-            }
+            throw new Error('fun(authenticatePassword)/ ' + error.message);
         }
     }
 
     async setMasterPassword(password: string): Promise<void> {
+        // some validation
         this.masterPassword = password;
     }
 
-    // async addPassword(service: string, username: string, password: string): Promise<void> {
-    //     if (!this.masterPassword) {
-    //         throw new Error('Master password not set');
-    //     }
-    //
-    //     const passwords = await this.getPasswords();
-    //
-    //     passwords[service] = {
-    //         username,
-    //         password,
-    //         createdAt: new Date().toISOString(),
-    //     };
-    //
-    //     await this.savePasswords(passwords);
-    // }
-
-    // async getPassword(service: string): Promise<{ username: string, password: string } | null> {
-    //     const passwords = await this.getPasswords();
-    //     return passwords[service] || null;
-    // }
-
-    async getAllServices(): Promise<string[]> {
+    async getAllPasswords(): Promise<Password[]> {
         const encryptedFile = fs.readFileSync(this.filePath, 'utf8');
-        const passwords = this.decrypt(encryptedFile);
-        // console.log(passwords);
-        return passwords;
+        const decryptedData = await this.decrypt(encryptedFile);
+        return decryptedData as Password[];
     }
-
-    // async deletePassword(service: string): Promise<boolean> {
-    //     const passwords = await this.getPasswords();
-    //
-    //     if (!passwords[service]) return false;
-    //
-    //     delete passwords[service];
-    //     await this.savePasswords(passwords);
-    //     return true;
-    // }
-
-    // private async getPasswords(): Promise<Record<string, any>> {
-    //     if (!this.masterPassword) {
-    //         throw new Error('Master password not set');
-    //     }
-    //
-    //     if (!fs.existsSync(this.filePath)) {
-    //         return {};
-    //     }
-    //
-    //     try {
-    //         const fileContent = fs.readFileSync(this.filePath, 'utf8');
-    //         if (!fileContent || fileContent.length === 0) return {};
-    //
-    //         // Parse the stored data
-    //         const {salt, iv, data} = JSON.parse(fileContent);
-    //
-    //         // Derive key from master password
-    //         const key = this.deriveKeyFromPassword(this.masterPassword, salt);
-    //
-    //         // Create decipher and decrypt
-    //         const decipher = crypto.createDecipheriv(
-    //             'aes-256-cbc',
-    //             key,
-    //             Buffer.from(iv, 'hex')
-    //         );
-    //
-    //         let decrypted = decipher.update(data, 'base64', 'utf8');
-    //         decrypted += decipher.final('utf8');
-    //
-    //         return JSON.parse(decrypted);
-    //     } catch (error) {
-    //         console.error('Failed to decrypt password file:', error);
-    //         return {};
-    //     }
-    // }
 
     async createEncryptedPasswordsFile(): Promise<void> {
         if (!this.masterPassword) {
             throw new Error('Master password not set');
         }
-
-        const example = {
-            1:{
-                name: 'example.com',
-                url: 'www.url.com',
-                login: 'example@gmail.com',
-                password: 'password',
-                comment: 'example comment',
-            },
-            2:{
-                name: 'gakko',
-                url: 'www.gakko.com',
-                login: 's27799',
-                password: 'password',
-                comment: 'example comment',
-            }
-        }
-
-        await this.savePasswords(example);
-        // const passwords = await this.getPasswords();
-        // await this.savePasswords(passwords);
+        const initialPasswords: Password[] = []; // Initialize with an empty array
+        initialPasswords.push(new Password('gakko', 'www.gakko.com', 's27799', 'admin', 'comment'));
+        initialPasswords.push(new Password('dataiku', 'www.dataiku.com', 'L25_126', 'haslo', 'comment'));
+        await this.savePasswords(initialPasswords);
     }
 
-    private async savePasswords(passwords: Record<string, any>): Promise<void> {
+    private async savePasswords(passwords: Password[]): Promise<void> {
         const encryptedFile = this.encrypt(passwords);
 
         // Create directory if it doesn't exist
@@ -186,13 +99,13 @@ export class PasswordManager {
         }
     }
 
-    private encrypt(passwords: Record<string, any>) {
+    private encrypt(passwordsArray: Password[]): string {
         if (!this.masterPassword) {
             throw new Error('Master password not set');
         }
 
         const salt = crypto.randomBytes(16).toString('hex');
-        const dataString = JSON.stringify(passwords);
+        const dataString = JSON.stringify(passwordsArray);
         // Generate a random IV for each encryption
         const iv = crypto.randomBytes(16);
         // Derive key from master password
@@ -201,15 +114,14 @@ export class PasswordManager {
         const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
         let encrypted = cipher.update(dataString, 'utf8', 'base64');
         encrypted += cipher.final('base64');
-        const result = JSON.stringify({
+        return JSON.stringify({
             salt: salt,
             iv: iv.toString('hex'),
             data: encrypted
         });
-        return result;
     }
 
-    private decrypt(encryptedFile: string) {
+    private decrypt(encryptedFile: string): Password[] {
         if (!this.masterPassword) {
             throw new Error('Master password not set');
         }
@@ -228,16 +140,12 @@ export class PasswordManager {
             decrypted += decipher.final('utf8');
 
             // Verify the decrypted content is valid JSON
-            JSON.parse(decrypted);
-            console.log("valid JSON");
-            // console.log(decrypted);
-
-            // If we reach here, decryption was successful
-            return JSON.parse(decrypted);
+            const parsedData = JSON.parse(decrypted);
+            // console.log("Successfully decrypted the file");
+            return Array.isArray(parsedData) ? parsedData : []; // Ensure it's an array
         } catch (error) {
             this.masterPassword = null;
-            console.log("Invalid password");
-            throw new Error('Invalid password');
+            throw new Error('fun(decrypt): Invalid password');
         }
     }
 

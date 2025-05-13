@@ -99,9 +99,7 @@ function App() {
     };
 
     if (isAuthenticated) {
-        return <MainWindow
-            credentials={credentials}
-        />;
+        return <MainWindow credentials={credentials}/>;
     }
 
     return (
